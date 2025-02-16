@@ -1,0 +1,59 @@
+name: async_api
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    depends_on:
+      - postgres
+    restart: always
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - network
+
+volumes:
+  pgdata:
+    name: async_api-pgdata
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: ${DATA_PATH_HOST}/postgres/async_api
+  pgadmin-data:
+    name: pgadmin-data
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: ${DATA_PATH_HOST}/pgadmin
+
+networks:
+  network:
+    driver: bridge
