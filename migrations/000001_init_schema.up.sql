@@ -1,5 +1,5 @@
 CREATE TABLE users (
-	id UUID NOT NULL DEFAULT gen_random_uuid(),
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	email VARCHAR(320) NOT NULL UNIQUE,
 	hashed_password VARCHAR(96) NOT NULL, -- bcrypt password base64 encoded
 	created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -22,8 +22,8 @@ CREATE TABLE reports (
 	download_url_expires_at TIMESTAMPTZ,
 	error_message VARCHAR,
 	created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	started_at TIMESTAMPTZ ,
-	failed_at TIMESTAMPTZ ,
-	completed_at TIMESTAMPTZ ,
+	started_at TIMESTAMPTZ,
+	failed_at TIMESTAMPTZ,
+	completed_at TIMESTAMPTZ,
 	PRIMARY KEY (user_id, id)
 );
