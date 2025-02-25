@@ -7,8 +7,6 @@ import (
 	"testing"
 	"time"
 
-	// _ "github.com/golang-migrate/migrate/v4/database/pgx/v5"
-	// _ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/stretchr/testify/require"
 )
 

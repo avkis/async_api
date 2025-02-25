@@ -1,5 +1,7 @@
 export PROJECT_ROOT=$(pwd)
-export DB_HOST=127.0.0.1
+export APISERVER_HOST=localhost
+export APISERVER_PORT=5000
+export DB_PORT=5432
 export DB_PORT=5432
 export DB_PORT_TEST=5433
 export DB_USER=admin
@@ -9,3 +11,4 @@ export DB_SSL_MODE=disable
 export DB_SCHEMA=init_schema
 export DB_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${DB_SSL_MODE}
 export DB_URL_TEST=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT_TEST}/${DB_NAME}?sslmode=${DB_SSL_MODE}
+export JWT_SECRET=supersecretkey

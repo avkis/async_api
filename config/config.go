@@ -14,16 +14,21 @@ const (
 )
 
 type Config struct {
-	DBName      string `env:"DB_NAME"`
-	DBHost      string `env:"DB_HOST"`
-	DBPort      string `env:"DB_PORT"`
-	DBPortTest  string `env:"DB_PORT_TEST"`
-	DBUser      string `env:"DB_USER"`
-	DBPassword  string `env:"DB_PASSWORD"`
-	DBSSLMode   string `env:"DB_SSL_MODE"`
-	DBSchema    string `env:"DB_SCHEMA"`
-	Env         Env    `env:"ENV" envDefault:"dev"`
-	ProjectRoot string `env:"PROJECT_ROOT"`
+	ApiServerHost           string `env:"APISERVER_HOST"`
+	ApiServerPort           string `env:"APISERVER_PORT"`
+	DBName                  string `env:"DB_NAME"`
+	DBHost                  string `env:"DB_HOST"`
+	DBPort                  string `env:"DB_PORT"`
+	DBPortTest              string `env:"DB_PORT_TEST"`
+	DBUser                  string `env:"DB_USER"`
+	DBPassword              string `env:"DB_PASSWORD"`
+	DBSSLMode               string `env:"DB_SSL_MODE"`
+	DBSchema                string `env:"DB_SCHEMA"`
+	Env                     Env    `env:"ENV" envDefault:"dev"`
+	JwtSecret               string `env:"JWT_SECRET"`
+	JwtAccessTokenLifetime  string `env:"JWT_ACCESS_TOKEN_LIFETIME"`
+	JwtRefreshTokenLifetime string `env:"JWT_REFRESH_TOKEN_LIFETIME"`
+	ProjectRoot             string `env:"PROJECT_ROOT"`
 }
 
 func New() (*Config, error) {

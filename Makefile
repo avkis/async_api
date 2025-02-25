@@ -17,4 +17,7 @@ db_test_migrate:
 	migrate -database ${DB_URL_TEST} -path migrations up
 
 run_test:
-	go test ./store
+	go test ./...
+
+run:
+	go run ./cmd/apiserver/main.go
