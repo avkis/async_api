@@ -24,7 +24,7 @@ func handler(f func(w http.ResponseWriter, r *http.Request) error) http.HandlerF
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := f(w, r); err != nil {
 			status := http.StatusInternalServerError
-			msg := http.StatusText(status)
+			var msg string
 			if e, ok := err.(*ErrWithStatus); ok {
 				status = e.status
 				msg = http.StatusText(e.status)

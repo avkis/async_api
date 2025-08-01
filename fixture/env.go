@@ -27,6 +27,7 @@ func NewTestEnv(t *testing.T) *TestEnv {
 
 	db, err := store.NewPostgresDB(conf)
 	require.NoError(t, err)
+	// defer db.Close()
 
 	return &TestEnv{
 		Config: conf,

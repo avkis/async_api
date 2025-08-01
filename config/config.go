@@ -29,6 +29,10 @@ type Config struct {
 	JwtAccessTokenLifetime  string `env:"JWT_ACCESS_TOKEN_LIFETIME"`
 	JwtRefreshTokenLifetime string `env:"JWT_REFRESH_TOKEN_LIFETIME"`
 	ProjectRoot             string `env:"PROJECT_ROOT"`
+	S3LocalstackEndpoint    string `env:"S3_LOCALSTACK_ENDPOINT"`
+	S3Bucket                string `env:"S3_BUCKET"`
+	SQSLocalstackEndpoint   string `env:"SQS_LOCALSTACK_ENDPOINT"`
+	SQSQueue                string `env:"SQS_QUEUE"`
 }
 
 func New() (*Config, error) {

@@ -35,7 +35,8 @@ func run() error {
 
 	jsonHandler := slog.NewJSONHandler(os.Stdout, nil)
 	logger := slog.New(jsonHandler)
-	server := apiserver.New(conf, logger, dataStore)
+	jwtManager := apiserver.NewJwtManager(conf)
+	server := apiserver.New(conf, logger, dataStore, jwtManager)
 	if err := server.Start(ctx); err != nil {
 		return err
 	}
